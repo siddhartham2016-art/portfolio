@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Siddhartha Mukherjee — Digital Growth Architect</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a0f1e;
+    --navy-mid: #111827;
+    --navy-light: #1e2d45;
+    --accent: #00d4aa;
+    --accent2: #ff6b35;
+    --accent3: #7c6dfa;
+    --gold: #f5b942;
+    --text: #e8edf5;
+    --text-muted: #8899b4;
+    --border: rgba(255,255,255,0.08);
+    --card-bg: rgba(255,255,255,0.04);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--navy);
+    color: var(--text);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 1rem 2rem;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(10,15,30,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.02em;
+  }
+  nav ul { list-style: none; display: flex; gap: 2rem; }
+  nav a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s; }
+  nav a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 8rem 2rem 4rem;
+    max-width: 1200px; margin: 0 auto;
+    position: relative;
+  }
+  .hero-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; width: 100%;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem; font-weight: 500;
+    color: var(--accent);
+    background: rgba(0,212,170,0.08);
+    border: 1px solid rgba(0,212,170,0.2);
+    padding: 0.4rem 0.9rem;
+    border-radius: 2px;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 1.2rem;
+    letter-spacing: -0.02em;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero-sub {
+    font-size: 1.05rem; color: var(--text-muted);
+    max-width: 480px; margin-bottom: 2rem;
+    line-height: 1.8;
+  }
+  .hero-cta {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+  .btn-primary {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--navy);
+    padding: 0.8rem 2rem;
+    font-weight: 600; font-size: 0.9rem;
+    text-decoration: none;
+    border-radius: 4px;
+    letter-spacing: 0.02em;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,212,170,0.25); }
+  .btn-outline {
+    display: inline-block;
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 0.8rem 2rem;
+    font-weight: 500; font-size: 0.9rem;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: border-color 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* STATS HERO */
+  .hero-stats {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+  }
+  .stat-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .stat-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  }
+  .stat-card.c1::before { background: var(--accent); }
+  .stat-card.c2::before { background: var(--accent2); }
+  .stat-card.c3::before { background: var(--accent3); }
+  .stat-card.c4::before { background: var(--gold); }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem; font-weight: 900;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .stat-card.c1 .stat-num { color: var(--accent); }
+  .stat-card.c2 .stat-num { color: var(--accent2); }
+  .stat-card.c3 .stat-num { color: var(--accent3); }
+  .stat-card.c4 .stat-num { color: var(--gold); }
+  .stat-label { font-size: 0.8rem; color: var(--text-muted); font-weight: 500; line-height: 1.4; }
+
+  /* SECTIONS */
+  section { padding: 5rem 2rem; max-width: 1200px; margin: 0 auto; }
+  .section-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 700; line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+  .section-desc { color: var(--text-muted); max-width: 600px; font-size: 1rem; margin-bottom: 3rem; }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .about-text p { color: var(--text-muted); margin-bottom: 1.2rem; line-height: 1.8; }
+  .about-highlight {
+    background: var(--card-bg);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    padding: 1.2rem 1.5rem;
+    margin: 2rem 0;
+    font-style: italic;
+    color: var(--text);
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+  .awards { display: flex; flex-direction: column; gap: 0.8rem; }
+  .award-item {
+    display: flex; align-items: center; gap: 1rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.2rem;
+  }
+  .award-year {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem; color: var(--gold);
+    background: rgba(245,185,66,0.1);
+    border: 1px solid rgba(245,185,66,0.2);
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+  .award-title { font-size: 0.9rem; font-weight: 500; }
+  .award-co { font-size: 0.78rem; color: var(--text-muted); }
+  .cert-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; margin-top: 1.5rem; }
+  .cert-badge {
+    background: rgba(124,109,250,0.08);
+    border: 1px solid rgba(124,109,250,0.15);
+    border-radius: 6px;
+    padding: 0.6rem 0.9rem;
+    font-size: 0.78rem; color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  /* EXPERTISE */
+  .expertise-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+  .expertise-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.5rem;
+    transition: border-color 0.2s, transform 0.2s;
+    cursor: default;
+  }
+  .expertise-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+  .exp-icon {
+    width: 40px; height: 40px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  .exp-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.5rem; }
+  .exp-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; }
+  .exp-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.8rem; }
+  .tag {
+    font-size: 0.68rem; font-family: 'JetBrains Mono', monospace;
+    color: var(--text-muted);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+  }
+
+  /* CASE STUDIES */
+  .cases { display: flex; flex-direction: column; gap: 2rem; }
+  .case-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+    display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: start;
+    transition: border-color 0.2s;
+  }
+  .case-card:hover { border-color: rgba(0,212,170,0.3); }
+  .case-type {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 0.3rem 0.7rem; border-radius: 3px;
+    display: inline-block; margin-bottom: 0.8rem;
+    font-weight: 500;
+  }
+  .case-type.seo { color: var(--accent); background: rgba(0,212,170,0.08); border: 1px solid rgba(0,212,170,0.15); }
+  .case-type.paid { color: var(--accent2); background: rgba(255,107,53,0.08); border: 1px solid rgba(255,107,53,0.15); }
+  .case-h { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.3; }
+  .case-client { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 1rem; }
+  .case-problem { font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 1rem; }
+  .case-actions { font-size: 0.88rem; color: var(--text); line-height: 1.7; margin-bottom: 0.5rem; }
+  .case-metrics {
+    display: flex; flex-direction: column; gap: 0.6rem;
+    min-width: 160px;
+  }
+  .metric-pill {
+    background: rgba(0,212,170,0.06);
+    border: 1px solid rgba(0,212,170,0.15);
+    border-radius: 6px;
+    padding: 0.6rem 1rem;
+    text-align: center;
+  }
+  .metric-pill.orange { background: rgba(255,107,53,0.06); border-color: rgba(255,107,53,0.15); }
+  .metric-pill.purple { background: rgba(124,109,250,0.06); border-color: rgba(124,109,250,0.15); }
+  .metric-big {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-weight: 900;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .metric-pill.orange .metric-big { color: var(--accent2); }
+  .metric-pill.purple .metric-big { color: var(--accent3); }
+  .metric-small { font-size: 0.7rem; color: var(--text-muted); margin-top: 0.2rem; }
+
+  /* EXPERIENCE */
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before {
+    content: '';
+    position: absolute; left: 0; top: 0.6rem; bottom: 0;
+    width: 1px; background: var(--border);
+  }
+  .timeline-item { position: relative; margin-bottom: 2.5rem; }
+  .timeline-item::before {
+    content: '';
+    position: absolute; left: -2.35rem; top: 0.5rem;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--navy);
+    box-shadow: 0 0 0 2px var(--accent);
+  }
+  .timeline-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem; color: var(--accent); font-weight: 500;
+    letter-spacing: 0.08em; margin-bottom: 0.3rem;
+  }
+  .timeline-role { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.2rem; }
+  .timeline-co { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 0.8rem; }
+  .timeline-points { list-style: none; }
+  .timeline-points li {
+    font-size: 0.88rem; color: var(--text-muted);
+    padding: 0.3rem 0 0.3rem 1.2rem;
+    position: relative; line-height: 1.6;
+  }
+  .timeline-points li::before {
+    content: '→';
+    position: absolute; left: 0;
+    color: var(--accent); font-size: 0.8rem;
+  }
+
+  /* TOOLS */
+  .tools-grid { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .tool-chip {
+    font-size: 0.8rem; font-weight: 500;
+    padding: 0.45rem 0.9rem;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    transition: all 0.2s;
+    cursor: default;
+  }
+  .tool-chip:hover { border-color: var(--accent); color: var(--accent); background: rgba(0,212,170,0.05); }
+  .tool-chip.primary { border-color: rgba(0,212,170,0.25); color: var(--accent); background: rgba(0,212,170,0.05); }
+
+  /* CONTACT */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+  .contact-item {
+    display: flex; align-items: center; gap: 1rem;
+    margin-bottom: 1rem;
+    color: var(--text-muted);
+  }
+  .contact-icon {
+    width: 36px; height: 36px; border-radius: 8px;
+    background: var(--card-bg); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.9rem; flex-shrink: 0;
+  }
+  .contact-item a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; }
+  .contact-item a:hover { color: var(--accent); }
+  .contact-box {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px; padding: 2rem;
+  }
+  .contact-box p { color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.95rem; line-height: 1.7; }
+  .open-to { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+  .open-tag {
+    font-size: 0.78rem; font-weight: 500;
+    padding: 0.35rem 0.8rem; border-radius: 4px;
+    background: rgba(124,109,250,0.08);
+    border: 1px solid rgba(124,109,250,0.2);
+    color: #a89ef7;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    max-width: 1200px; margin: 0 auto;
+  }
+
+  /* DIVIDER */
+  .divider { border: none; border-top: 1px solid var(--border); margin: 0 2rem; }
+
+  /* BG DECORATION */
+  .bg-glow {
+    position: fixed; pointer-events: none; z-index: 0;
+    border-radius: 50%; filter: blur(80px); opacity: 0.04;
+  }
+  .bg-glow-1 { width: 600px; height: 600px; top: -200px; right: -200px; background: var(--accent); }
+  .bg-glow-2 { width: 400px; height: 400px; bottom: 10%; left: -100px; background: var(--accent3); }
+
+  @media (max-width: 768px) {
+    .hero-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; }
+    .expertise-grid { grid-template-columns: 1fr 1fr; }
+    .case-card { grid-template-columns: 1fr; }
+    nav ul { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-glow bg-glow-1"></div>
+<div class="bg-glow bg-glow-2"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">SM</div>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#expertise">Expertise</a></li>
+    <li><a href="#cases">Case Studies</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div style="max-width:1200px;margin:0 auto;">
+<section style="padding-top:0;" id="hero">
+  <div class="hero">
+    <div class="hero-grid">
+      <div>
+        <span class="hero-tag">Senior Digital Marketing Manager</span>
+        <h1>Siddhartha<br><span>Mukherjee</span></h1>
+        <p class="hero-sub">I architect digital growth through data-driven SEO, performance marketing, and AI-powered automation — delivering measurable ROI across India, APAC, and GCC markets.</p>
+        <div class="hero-cta">
+          <a href="#cases" class="btn-primary">View Case Studies</a>
+          <a href="#contact" class="btn-outline">Get in Touch</a>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-card c1">
+          <div class="stat-num">40%</div>
+          <div class="stat-label">YoY Organic Traffic Growth</div>
+        </div>
+        <div class="stat-card c2">
+          <div class="stat-num">3×</div>
+          <div class="stat-label">ROI on ₹30L+ Annual Ad Spend</div>
+        </div>
+        <div class="stat-card c3">
+          <div class="stat-num">12+</div>
+          <div class="stat-label">Years in Digital Marketing</div>
+        </div>
+        <div class="stat-card c4">
+          <div class="stat-num">16</div>
+          <div class="stat-label">Member Cross-Functional Team Led</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<hr class="divider">
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-eyebrow">01 — About</div>
+  <h2 class="section-title">The Growth Architect</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I'm a Senior Digital Marketing Manager based in Kolkata, actively relocating to Bengaluru. With over 12 years of experience spanning SEO, paid media, CRO, and AI-driven automation, I've helped B2B and B2C brands across India, APAC, US, UK, Australia, and GCC markets scale their digital presence significantly.</p>
+      <p>Currently at Floatingchip Internet Technologies (2018–Present), I lead a 16-member cross-functional team managing campaigns, performance optimization, and analytics reporting. I've managed annual ad budgets exceeding ₹30 Lakhs while consistently delivering 3× ROI.</p>
+      <div class="about-highlight">
+        "My approach combines technical SEO depth, data-first paid campaigns, and AI-augmented workflows to build growth engines that compound over time — not just short-term traffic spikes."
+      </div>
+      <p>I'm passionate about staying at the cutting edge — integrating tools like ChatGPT, Surfer SEO, Google AI Studio, and Perplexity into marketing workflows to scale output without scaling headcount.</p>
+
+      <h3 style="font-size:0.9rem;font-weight:600;margin:2rem 0 0.8rem;letter-spacing:0.05em;text-transform:uppercase;color:var(--text-muted);">Certifications</h3>
+      <div class="cert-grid">
+        <div class="cert-badge">Google Ads Certified</div>
+        <div class="cert-badge">Google Analytics (GA4)</div>
+        <div class="cert-badge">SEMrush SEO Toolkit</div>
+        <div class="cert-badge">HubSpot Inbound Marketing</div>
+      </div>
+    </div>
+    <div>
+      <h3 style="font-size:0.9rem;font-weight:600;margin-bottom:1rem;letter-spacing:0.05em;text-transform:uppercase;color:var(--text-muted);">Awards & Recognition</h3>
+      <div class="awards">
+        <div class="award-item">
+          <div>
+            <span class="award-year">2026</span>
+          </div>
+          <div>
+            <div class="award-title">Leadership Impact Award</div>
+            <div class="award-co">Floatingchip Internet Technologies</div>
+          </div>
+        </div>
+        <div class="award-item">
+          <div>
+            <span class="award-year">2025</span>
+          </div>
+          <div>
+            <div class="award-title">Leadership Excellence Award</div>
+            <div class="award-co">Floatingchip Internet Technologies</div>
+          </div>
+        </div>
+        <div class="award-item">
+          <div>
+            <span class="award-year">2024</span>
+          </div>
+          <div>
+            <div class="award-title">Iron Man Award</div>
+            <div class="award-co">Floatingchip Internet Technologies</div>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="font-size:0.9rem;font-weight:600;margin:2rem 0 0.8rem;letter-spacing:0.05em;text-transform:uppercase;color:var(--text-muted);">Education</h3>
+      <div class="awards">
+        <div class="award-item">
+          <div>
+            <span class="award-year">2012</span>
+          </div>
+          <div>
+            <div class="award-title">MBA in Marketing</div>
+            <div class="award-co">Punjab Technical University</div>
+          </div>
+        </div>
+        <div class="award-item">
+          <div>
+            <span class="award-year">2008</span>
+          </div>
+          <div>
+            <div class="award-title">Bachelor of Science</div>
+            <div class="award-co">Calcutta University</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- EXPERTISE -->
+<section id="expertise">
+  <div class="section-eyebrow">02 — Core Expertise</div>
+  <h2 class="section-title">What I Do Best</h2>
+  <p class="section-desc">End-to-end digital growth strategy from search visibility to paid conversion — backed by 12+ years of hands-on execution.</p>
+  <div class="expertise-grid">
+    <div class="expertise-card">
+      <div class="exp-icon" style="background:rgba(0,212,170,0.1);">🔍</div>
+      <div class="exp-title">SEO Strategy & Execution</div>
+      <div class="exp-desc">Technical audits, on-page optimization, content strategy, and authority link building. Ranked 319+ keywords in top 3 positions for a single client.</div>
+      <div class="exp-tags">
+        <span class="tag">Technical SEO</span><span class="tag">Link Building</span><span class="tag">Content Strategy</span><span class="tag">Schema Markup</span>
+      </div>
+    </div>
+    <div class="expertise-card">
+      <div class="exp-icon" style="background:rgba(255,107,53,0.1);">📣</div>
+      <div class="exp-title">Google Ads & PPC</div>
+      <div class="exp-desc">Campaign architecture, smart bidding, Quality Score optimization, and negative keyword management. Managed ₹1.3M+ in Google Ads spend with sustained performance.</div>
+      <div class="exp-tags">
+        <span class="tag">Target CPA</span><span class="tag">Quality Score</span><span class="tag">ROAS</span><span class="tag">Search Ads</span>
+      </div>
+    </div>
+    <div class="expertise-card">
+      <div class="exp-icon" style="background:rgba(124,109,250,0.1);">📊</div>
+      <div class="exp-title">Meta Ads & Social</div>
+      <div class="exp-desc">Full-funnel Meta campaign management including audience segmentation, creative testing, and retargeting strategies for B2B and B2C brands.</div>
+      <div class="exp-tags">
+        <span class="tag">Meta Ads</span><span class="tag">Retargeting</span><span class="tag">A/B Testing</span><span class="tag">Audience</span>
+      </div>
+    </div>
+    <div class="expertise-card">
+      <div class="exp-icon" style="background:rgba(245,185,66,0.1);">⚡</div>
+      <div class="exp-title">AI-Driven Marketing</div>
+      <div class="exp-desc">Integrating AI tools into marketing workflows to scale content production, automate reporting, and improve campaign performance without proportional cost increases.</div>
+      <div class="exp-tags">
+        <span class="tag">ChatGPT</span><span class="tag">Surfer SEO</span><span class="tag">AI Studio</span><span class="tag">Automation</span>
+      </div>
+    </div>
+    <div class="expertise-card">
+      <div class="exp-icon" style="background:rgba(0,212,170,0.1);">📈</div>
+      <div class="exp-title">Conversion Rate Optimisation</div>
+      <div class="exp-desc">Landing page redesigns, A/B testing frameworks, user journey mapping, and funnel restructuring to maximize lead volume at lower CPL.</div>
+      <div class="exp-tags">
+        <span class="tag">Landing Pages</span><span class="tag">A/B Testing</span><span class="tag">Funnels</span><span class="tag">CRO</span>
+      </div>
+    </div>
+    <div class="expertise-card">
+      <div class="exp-icon" style="background:rgba(255,107,53,0.1);">🎯</div>
+      <div class="exp-title">Analytics & Reporting</div>
+      <div class="exp-desc">GA4, Google Search Console, Looker Studio dashboards, and KPI reporting. Translating data into actionable growth recommendations for senior leadership.</div>
+      <div class="exp-tags">
+        <span class="tag">GA4</span><span class="tag">Looker Studio</span><span class="tag">GSC</span><span class="tag">Tag Manager</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CASE STUDIES -->
+<section id="cases">
+  <div class="section-eyebrow">03 — Case Studies</div>
+  <h2 class="section-title">Results That Speak</h2>
+  <p class="section-desc">Real campaigns. Real numbers. No inflated estimates — every metric is verified from platform dashboards.</p>
+  <div class="cases">
+
+    <div class="case-card">
+      <div>
+        <span class="case-type seo">SEO · B2B/B2C</span>
+        <h3 class="case-h">Translation Services — Keyword Dominance from Zero</h3>
+        <div class="case-client">Australian Translation Services | Language Services (Immigration, Legal, Academic)</div>
+        <p class="case-problem"><strong style="color:var(--text);font-weight:500;">Challenge:</strong> New-to-market brand with zero organic presence competing against established agencies and freelancer platforms in a niche technical space.</p>
+        <div class="case-actions"><strong style="color:var(--text);font-weight:500;">Strategy:</strong> Competitor gap analysis via Ahrefs → content strategy around informational + commercial intent keywords → crawlability and internal linking fixes → niche backlink outreach campaign.</div>
+      </div>
+      <div class="case-metrics">
+        <div class="metric-pill">
+          <div class="metric-big">319+</div>
+          <div class="metric-small">Keywords in Top 3</div>
+        </div>
+        <div class="metric-pill orange">
+          <div class="metric-big">74K+</div>
+          <div class="metric-small">Monthly Organic Sessions</div>
+        </div>
+        <div class="metric-pill purple">
+          <div class="metric-big">14.2M</div>
+          <div class="metric-small">Total Impressions</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-card">
+      <div>
+        <span class="case-type seo">SEO · B2C</span>
+        <h3 class="case-h">CV Writing Service — Content-Led Traffic Growth</h3>
+        <div class="case-client">Resume/CV Writing Platform | B2C</div>
+        <p class="case-problem"><strong style="color:var(--text);font-weight:500;">Challenge:</strong> Content not indexed properly, generic keyword targeting, high bounce rate, poor mobile UX.</p>
+        <div class="case-actions"><strong style="color:var(--text);font-weight:500;">Strategy:</strong> Restructured site architecture and content taxonomy → implemented schema markup → created student-intent keyword-targeted landing pages → improved page speed and mobile UX.</div>
+      </div>
+      <div class="case-metrics">
+        <div class="metric-pill">
+          <div class="metric-big">50K+</div>
+          <div class="metric-small">Monthly Organic Sessions</div>
+        </div>
+        <div class="metric-pill orange">
+          <div class="metric-big">15.3M</div>
+          <div class="metric-small">Total Impressions</div>
+        </div>
+        <div class="metric-pill purple">
+          <div class="metric-big">↓ High</div>
+          <div class="metric-small">Bounce Rate Reduced</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-card">
+      <div>
+        <span class="case-type paid">Google Ads · B2B/B2C</span>
+        <h3 class="case-h">Technology Rental — 4 Years, 151K Clicks, ₹76.91 CPL</h3>
+        <div class="case-client">Rentcart.com | Laptop & Desktop Rental across India | Jan 2022 – Feb 2026</div>
+        <p class="case-problem"><strong style="color:var(--text);font-weight:500;">Challenge:</strong> Scale paid leads on high-intent "laptop on rent" keywords without proportionally increasing ad spend.</p>
+        <div class="case-actions"><strong style="color:var(--text);font-weight:500;">Strategy:</strong> City-wise and product-wise ad group restructuring → Target CPA bidding → negative keyword layers → budget shifted toward trending categories (Pune: +34% search growth) → impression share grew 27% to 33% MoM.</div>
+      </div>
+      <div class="case-metrics">
+        <div class="metric-pill">
+          <div class="metric-big">151K</div>
+          <div class="metric-small">Total Clicks</div>
+        </div>
+        <div class="metric-pill orange">
+          <div class="metric-big">16.9K</div>
+          <div class="metric-small">Conversions</div>
+        </div>
+        <div class="metric-pill purple">
+          <div class="metric-big">₹76.91</div>
+          <div class="metric-small">Avg. CPL (₹1.3M Managed)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-card">
+      <div>
+        <span class="case-type paid">Google Ads · 7 Years</span>
+        <h3 class="case-h">Translation Brand — 826K Impressions, ₹5.43M, Sustained for 7 Years</h3>
+        <div class="case-client">Australian Translation Services | NAATI-Certified Translation | May 2019 – Feb 2026</div>
+        <p class="case-problem"><strong style="color:var(--text);font-weight:500;">Challenge:</strong> Capture high-intent translation queries (visa, legal, immigration) cost-efficiently over the long term against established agencies.</p>
+        <div class="case-actions"><strong style="color:var(--text);font-weight:500;">Strategy:</strong> Keyword architecture by service type → tight ad-to-landing-page relevance → disciplined bid management holding CPC at ₹62.80 across 7 years → "Naati translator" impression share grew 40% to 42% MoM.</div>
+      </div>
+      <div class="case-metrics">
+        <div class="metric-pill">
+          <div class="metric-big">86.5K</div>
+          <div class="metric-small">Clicks (7 Years)</div>
+        </div>
+        <div class="metric-pill orange">
+          <div class="metric-big">826K</div>
+          <div class="metric-small">Impressions</div>
+        </div>
+        <div class="metric-pill purple">
+          <div class="metric-big">₹62.80</div>
+          <div class="metric-small">Avg. CPC | ₹5.43M Managed</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-eyebrow">04 — Experience</div>
+  <h2 class="section-title">Career Journey</h2>
+  <p class="section-desc">12+ years of progressive growth across digital marketing leadership roles.</p>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-date">JUNE 2018 — PRESENT</div>
+      <div class="timeline-role">Senior Manager – Digital Marketing</div>
+      <div class="timeline-co">Floatingchip Internet Technologies · Kolkata</div>
+      <ul class="timeline-points">
+        <li>Lead a 16-member cross-functional team managing SEO, PPC, content, and analytics functions</li>
+        <li>Achieved 40% YoY organic traffic growth and 30% increase in paid leads while reducing CPL by 25%</li>
+        <li>Managed annual ad budgets exceeding ₹30 Lakhs across Google Ads and Meta platforms with 3× ROI</li>
+        <li>Integrated AI tools (ChatGPT, Surfer SEO, Google AI Studio, Perplexity) to scale content production and automate reporting workflows</li>
+        <li>Designed and implemented marketing automation workflows in HubSpot and Mailchimp</li>
+        <li>Led CRO initiatives — landing page redesigns, A/B testing — significantly reducing bounce rate</li>
+        <li>Presented monthly KPI dashboards and ROI analyses to senior leadership</li>
+        <li>Recognised with Leadership Impact (2026), Leadership Excellence (2025), and Iron Man (2024) awards</li>
+      </ul>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">AUG 2014 — MAY 2018</div>
+      <div class="timeline-role">Online Marketing Executive</div>
+      <div class="timeline-co">Sulekha.com</div>
+      <ul class="timeline-points">
+        <li>Executed on-page and off-page SEO including keyword research, meta optimisation, and backlink outreach</li>
+        <li>Managed content distribution across blogs, PPT/PDF channels, and citation listings</li>
+        <li>Collaborated with product and content teams to align campaigns with market trends</li>
+        <li>Handled CRM follow-ups, renewals, and inquiry management to improve customer retention</li>
+      </ul>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">APR 2013 — JULY 2014</div>
+      <div class="timeline-role">Customer Service Executive</div>
+      <div class="timeline-co">Pest Control India Pvt Ltd</div>
+      <ul class="timeline-points">
+        <li>Managed client communication, renewals, and quotations ensuring customer satisfaction and service retention</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- TOOLS -->
+<section id="tools">
+  <div class="section-eyebrow">05 — Tools & Platforms</div>
+  <h2 class="section-title">My Tech Stack</h2>
+  <p class="section-desc" style="margin-bottom:2rem;">The platforms and tools I use daily to plan, execute, and measure digital growth.</p>
+
+  <h4 style="font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.8rem;">SEO & Analytics</h4>
+  <div class="tools-grid" style="margin-bottom:1.8rem;">
+    <span class="tool-chip primary">Google Analytics 4</span>
+    <span class="tool-chip primary">Google Search Console</span>
+    <span class="tool-chip primary">Ahrefs</span>
+    <span class="tool-chip primary">SEMrush</span>
+    <span class="tool-chip primary">Surfer SEO</span>
+    <span class="tool-chip">Screaming Frog</span>
+    <span class="tool-chip">Moz</span>
+    <span class="tool-chip">Uber Suggest</span>
+    <span class="tool-chip">Microsoft Clarity</span>
+    <span class="tool-chip">Google Tag Manager</span>
+    <span class="tool-chip">Looker Studio</span>
+  </div>
+
+  <h4 style="font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.8rem;">Paid & Social Advertising</h4>
+  <div class="tools-grid" style="margin-bottom:1.8rem;">
+    <span class="tool-chip primary">Google Ads</span>
+    <span class="tool-chip primary">Meta Ads Manager</span>
+    <span class="tool-chip">Taboola</span>
+    <span class="tool-chip">SEO PowerSuite</span>
+    <span class="tool-chip">SimilarWeb</span>
+  </div>
+
+  <h4 style="font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.8rem;">AI & Automation</h4>
+  <div class="tools-grid" style="margin-bottom:1.8rem;">
+    <span class="tool-chip primary">ChatGPT / OpenAI</span>
+    <span class="tool-chip primary">Google AI Studio</span>
+    <span class="tool-chip primary">Perplexity</span>
+    <span class="tool-chip">Gemini</span>
+    <span class="tool-chip">Claude</span>
+    <span class="tool-chip">Zapier</span>
+    <span class="tool-chip">Jasper AI</span>
+    <span class="tool-chip">Notebook LM</span>
+    <span class="tool-chip">DeepSeek</span>
+    <span class="tool-chip">Blackbox AI</span>
+    <span class="tool-chip">HeyGen</span>
+    <span class="tool-chip">Ideogram</span>
+    <span class="tool-chip">Gamma AI</span>
+    <span class="tool-chip">Eleven Labs</span>
+  </div>
+
+  <h4 style="font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.8rem;">CRM, Email & Collaboration</h4>
+  <div class="tools-grid">
+    <span class="tool-chip primary">HubSpot</span>
+    <span class="tool-chip primary">Mailchimp</span>
+    <span class="tool-chip">Apollo.io</span>
+    <span class="tool-chip">Instantly.ai</span>
+    <span class="tool-chip">Canva</span>
+    <span class="tool-chip">Trello</span>
+    <span class="tool-chip">Copyscape</span>
+    <span class="tool-chip">Grammarly</span>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-eyebrow">06 — Contact</div>
+  <h2 class="section-title">Let's Work Together</h2>
+  <div class="contact-grid">
+    <div>
+      <p style="color:var(--text-muted);margin-bottom:2rem;line-height:1.8;">Currently based in Kolkata and actively relocating to Bengaluru. Available for immediate joining. Open to on-site, hybrid, or remote opportunities.</p>
+
+      <div class="contact-item">
+        <div class="contact-icon">✉</div>
+        <a href="mailto:siddhartham2016@gmail.com">siddhartham2016@gmail.com</a>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <a href="tel:+919874149772">+91 98741 49772</a>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">💼</div>
+        <a href="https://linkedin.com/in/digital-siddhartha" target="_blank">linkedin.com/in/digital-siddhartha</a>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">🌐</div>
+        <a href="https://thegrowtharchitect.carrd.co/" target="_blank">thegrowtharchitect.carrd.co</a>
+      </div>
+    </div>
+    <div class="contact-box">
+      <h3 style="font-size:1.05rem;font-weight:600;margin-bottom:0.8rem;">Open To</h3>
+      <p>I'm actively seeking senior-level digital marketing roles in Bengaluru, Pune, Mumbai, and Hyderabad — or remote positions with strong growth opportunities.</p>
+      <div class="open-to">
+        <span class="open-tag">Senior Digital Marketing Manager</span>
+        <span class="open-tag">SEO Lead</span>
+        <span class="open-tag">Growth Marketing Manager</span>
+        <span class="open-tag">Performance Marketing Manager</span>
+      </div>
+      <div style="margin-top:2rem;">
+        <a href="mailto:siddhartham2016@gmail.com" class="btn-primary">Send Me a Message</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Siddhartha Mukherjee · Senior Digital Marketing Manager · Built to showcase measurable growth</p>
+</footer>
+
+</body>
+</html>
